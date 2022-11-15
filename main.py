@@ -1,5 +1,8 @@
 import requests
 
+def cToFahrenheit(celsius):
+    return (celsius * 1.8) + 32
+
 def callWeatherStack(zipcode, accessKey):
     params = {
       'access_key': accessKey,
@@ -10,7 +13,8 @@ def callWeatherStack(zipcode, accessKey):
 
     api_response = api_result.json()
 
-    print(u'Current temperature in %s is %d degrees celsius' % (api_response['location']['name'], api_response['current']['temperature']))
+    print(u'Current temperature in %s is %d degrees Fahrenheit' % (api_response['location']['name'], cToFahrenheit(api_response['current']['temperature'])))
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
