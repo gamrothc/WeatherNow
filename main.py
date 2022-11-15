@@ -9,9 +9,9 @@ def callWeatherStack(zipcode, accessKey):
       'query': zipcode
     }
 
-    api_result = requests.get('http://api.weatherstack.com/current', params)
+    weather_api_result = requests.get('http://api.weatherstack.com/current', params)
 
-    api_response = api_result.json()
+    api_response = weather_api_result.json()
 
     print(u'Current temperature in %s is %d degrees Fahrenheit' % (api_response['location']['name'], cToFahrenheit(api_response['current']['temperature'])))
 
