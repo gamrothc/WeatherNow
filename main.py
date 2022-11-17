@@ -12,34 +12,34 @@ def callWeatherStack(zipcode, accessKey):
     }
 
     weather_api_result = requests.get('http://api.weatherstack.com/current', params)
-
     weather_api_response = weather_api_result.json()
 
-    print(u'Current temperature in %s is %d degrees Fahrenheit' % (weather_api_response['location']['name'], cToFahrenheit(weather_api_response['current']['temperature'])))
-
+    return weather_api_response['location']['name'], cToFahrenheit(weather_api_response['current']['temperature'])
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    
     #Weatherstack
     weatherstack_accessKey = '0b9ee0340f88066156ff8200cbd30ef0'
     zipcode = input("Enter your zipcode: ")
+    phonenumber = input("Enter your phone number (include '+1'): ")
     
     #Twilio
     twilio_account_sid = os.environ['TWILIO_ACCOUNT_SID']
     twilio_auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(twilio_account_sid, twilio_auth_token)
 
+    if len(zipcode) == 5:
+        city, temperature = callWeatherStack(zipcode, weatherstack_accessKey)
+    else:
+        print("Invalid Input - zipcode should be 5 numbers")
+    
+    # Formulate and Send Weather Report
+    weather_message = "Current temperature in " + str(city) + " is " + str(temperature) + " degrees Fahrenheit."
     message = client.messages.create(
-        body='Hi there',
+        body=weather_message,
         from_='+14254753954',
-        to='+12016614032'
+        to=phonenumber
     )
 
     print(message.sid) 
-
-    if len(zipcode) == 5:
-        callWeatherStack(zipcode, weatherstack_accessKey)
-    else:
-        print("Invalid Input - zipcode should be 5 numbers")
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
