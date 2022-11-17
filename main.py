@@ -23,7 +23,6 @@ def callWeatherStack(zipcode, accessKey):
 if __name__ == '__main__':
 
     # Weatherstack
-    # weatherstack_accessKey = '0b9ee0340f88066156ff8200cbd30ef0'
     weatherstack_access_key = os.environ['WEATHERSTACK_ACCESS_KEY']
     zipcode = input("Enter your zipcode: ")
     phonenumber = input("Enter your phone number (include '+1'): ")
