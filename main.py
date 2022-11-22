@@ -25,7 +25,7 @@ if __name__ == '__main__':
     # Weatherstack
     weatherstack_access_key = os.environ['WEATHERSTACK_ACCESS_KEY']
     zipcode = input("Enter your zipcode: ")
-    phonenumber = input("Enter your phone number (include '+1'): ")
+    phonenumber = input("Enter your phone number: ")
 
     if len(zipcode) == 5:
         city, temperature = callWeatherStack(zipcode, weatherstack_access_key)
@@ -45,4 +45,4 @@ if __name__ == '__main__':
         to=phonenumber
     )
 
-    print(message.sid)  # onlt here for testing, can be removed eventually
+    print(message.sid)  # only here for testing, can be removed eventually
