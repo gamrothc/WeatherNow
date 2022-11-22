@@ -22,8 +22,10 @@ def callWeatherStack(zipcode, accessKey):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
-    # Weatherstack
     weatherstack_access_key = os.environ['WEATHERSTACK_ACCESS_KEY']
+    twilio_account_sid = os.environ['TWILIO_ACCOUNT_SID']
+    twilio_auth_token = os.environ['TWILIO_AUTH_TOKEN']
+
     zipcode = input("Enter your zipcode: ")
     phonenumber = input("Enter your phone number: ")
 
@@ -31,10 +33,7 @@ if __name__ == '__main__':
         city, temperature = callWeatherStack(zipcode, weatherstack_access_key)
     else:
         print("Invalid Input - zipcode should be 5 numbers")
-
-    # Set Twilio Credentials
-    twilio_account_sid = os.environ['TWILIO_ACCOUNT_SID']
-    twilio_auth_token = os.environ['TWILIO_AUTH_TOKEN']
+ 
     client = Client(twilio_account_sid, twilio_auth_token)
 
     # Formulate and Send Weather Report
