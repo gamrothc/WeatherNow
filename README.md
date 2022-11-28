@@ -2,7 +2,7 @@
 WeatherNow application to get weather data and send text message to users 
 
 # Necessary Software
-Python 3 or higher
+Python 3 or higher,
 Twilio
 
 # Installation and Configuration Instructions
