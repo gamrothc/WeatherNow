@@ -4,7 +4,7 @@ from twilio.rest import Client
 
 
 def cToFahrenheit(celsius):
-    return (celsius * 1.8) + 32
+    return round((((celsius * 1.8)+32)/10)*10)
 
 
 def callWeatherStack(zipcode, accessKey):
@@ -47,4 +47,4 @@ if __name__ == '__main__':
         to=phonenumber
     )
 
-    print(message.sid)  # only here for testing, can be removed eventually
+    print("Weather Report successfully sent to " + phonenumber)  # only here for testing, can be removed eventually
