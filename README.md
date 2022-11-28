@@ -1,6 +1,9 @@
 # WeatherNow
 WeatherNow application to get weather data and send text message to users 
 
+# Before Running
+The code relies on using our API access tokens. For security purposes, we stored our tokens in our environment variables and retrieve them using Python’s ‘os’ library so that they were not displayed directly on Github. If you would like our access tokens, please reach out to our team.
+
 # To Run
 In the terminal run command: 'py main.py' ***Note: Some users run python scripts from their terminal using 'python' or 'python3'. Replace 'py' with whatver your computer uses.***
 
