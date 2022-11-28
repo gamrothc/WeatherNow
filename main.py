@@ -16,7 +16,9 @@ def callWeatherStack(zipcode, accessKey):
     weather_api_result = requests.get('http://api.weatherstack.com/current', params)
     weather_api_response = weather_api_result.json()
 
-    return weather_api_response['location']['name'], cToFahrenheit(weather_api_response['current']['temperature']), cToFahrenheit(weather_api_response['current']['feelslike']), weather_api_response['current']['uv_index']
+    return weather_api_response['location']['name'], cToFahrenheit(weather_api_response['current']['temperature']), \
+            cToFahrenheit(weather_api_response['current']['feelslike']), weather_api_response['current']['uv_index'], \
+            weather_api_response['current']['precip']
 
 
 # Press the green button in the gutter to run the script.
@@ -30,14 +32,14 @@ if __name__ == '__main__':
     phonenumber = input("Enter your phone number: ")
 
     if len(zipcode) == 5:
-        city, temperature, feels_like, uv_index = callWeatherStack(zipcode, weatherstack_access_key)
+        city, temperature, feels_like, uv_index, rain = callWeatherStack(zipcode, weatherstack_access_key)
     else:
         print("Invalid Input - zipcode should be 5 numbers")
  
     client = Client(twilio_account_sid, twilio_auth_token)
 
     # Formulate and Send Weather Report
-    weather_message = "Current temperature in " + str(city) + " is " + str(temperature) + " degrees Fahrenheit "\
+    weather_message = "Current temperature in " + str(city) + " is " + str(temperature) + " degrees Fahrenheit " \
                     "with a real-feel of " + str(feels_like) + " degrees Fahrenheit. The UV Index is " + str(uv_index) + "."
     message = client.messages.create(
         body=weather_message,
